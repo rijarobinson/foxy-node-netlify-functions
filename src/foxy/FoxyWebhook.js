@@ -77,6 +77,20 @@ function getItems(payload) {
 }
 
 /**
+ * Retrieves the customer data from the payload
+ *
+ * @param {PrepaymentPayload} payload to provide the items.
+ * @returns {Array<PrepaymentItem>} an array of customer data from this payload
+ */
+ function getCustomerData(payload) {
+  try {
+    return payload._embedded['fx:customer'] || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+/**
  * Builds a response as expected by the prepayment webhook.
  *
  * @param {string} details about the error, if it happened.
