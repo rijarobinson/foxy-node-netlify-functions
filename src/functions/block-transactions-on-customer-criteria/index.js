@@ -1,10 +1,7 @@
 //const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
 //const { config } = require("../../../config.js");
 
-return {
-  body: JSON.stringify({ details: "The message", ok: false, }),
-  statusCode: 500,
-};
+
 
 //const emailsToReject = ["rija@example.com"];
 
@@ -12,9 +9,13 @@ return {
  * @param {Object} requestEvent the request event built by Netlify Functions
  * @returns {Promise<{statusCode: number, body: string}>} the response object
  */
-/*async function handler(requestEvent) {
+async function handler(requestEvent) {
   // Validation
-  const customerData = extractCustomerDetails();
+  return {
+    body: JSON.stringify({ details: "The message", ok: false, }),
+    statusCode: 500,
+  };
+/*  const customerData = extractCustomerDetails();
   if (!validation.customer.validate(customerData)) {
     return validation.customer.response(customerData);
   }*/
