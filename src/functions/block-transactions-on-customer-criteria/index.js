@@ -19,7 +19,7 @@ const emailsToReject = ["rija@example.com"];
   if (!validation.input.validate(requestEvent)) {
     return validation.input.response();
   }*/
-  const items = extractItems(requestEvent);
+  const items = requestEvent.body;
  /* if (!validation.items.validate(items)) {
     return validation.items.response(items);
   }*/
