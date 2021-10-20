@@ -9,19 +9,51 @@ const emailsToReject = ["rija@example.com"];
  * @param {Object} requestEvent the request event built by Netlify Functions
  * @returns {Promise<{statusCode: number, body: string}>} the response object
  */
-async function handler(requestEvent) {
+
+
+ async function handler(requestEvent) {
+  // Validation
+  if (!validation.configuration.validate()) {
+    return validation.configuration.response();
+  }
+  if (!validation.input.validate(requestEvent)) {
+    return validation.input.response();
+  }
+  const items = extractItems(requestEvent.body);
+  if (!validation.items.validate(items)) {
+    return validation.items.response(items);
+  }
+
+
+//async function handler(requestEvent) {
   // Validation
 
 
-//  const customerData = extractCustomerDetails(requestEvent.body);
-  const customerData = JSON.stringify(getCustomerData());
+// const customerData = extractCustomerDetails(requestEvent.body);
+ // const customerData = JSON.stringify(requestEvent.body);
 // START HERE!!! just printing stuff. customerData was empty, so not getting body correctly?
 // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
   return {
-    body: JSON.stringify({ details: customerData, ok: false }),
+    body: JSON.stringify({ details: items, ok: false }),
     statusCode: 200,
   };
-}/*  if (!validation.customer.validate(customerData)) {
+}
+
+/**
+ * Extract items from payload received from FoxyCart
+ *
+ * @param {string} body of the response received from Webflow
+ * @returns {Array} an array of items
+ */
+ function extractItems(body) {
+  const objBody = JSON.parse(body);
+  if (objBody && objBody._embedded && objBody._embedded['fx:items']) {
+    return objBody._embedded['fx:items'];
+  }
+  return [];
+}
+
+/*  if (!validation.customer.validate(customerData)) {
     return validation.customer.response(customerData);
   }*/
 /*  const values = [];
