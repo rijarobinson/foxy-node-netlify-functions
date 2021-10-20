@@ -1,5 +1,5 @@
-//const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
-//const { config } = require("../../../config.js");
+const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
+const { config } = require("../../../config.js");
 
 
 
@@ -57,7 +57,7 @@ async function handler(requestEvent) {
       statusCode: 500,
     };
   }*/
-//}
+}
 
 /**
  * Extract Customer Details from payload received from FoxyCart
@@ -108,9 +108,9 @@ async function handler(requestEvent) {
     }),
     validate: (customer_data) => customer.every(e => validItem(e)),
   }
-}
+}*/
 
 module.exports = {
   handler,
   extractCustomerDetails
-}*/
+}
