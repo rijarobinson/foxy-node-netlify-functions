@@ -13,7 +13,7 @@ async function handler() {
   // Validation
 
 
-  const customerData = extractCustomerDetails(payload);
+  const customerData = extractCustomerDetails(requestEvent.body);
 
   return {
     body: JSON.stringify({ details: customerData, ok: false }),
