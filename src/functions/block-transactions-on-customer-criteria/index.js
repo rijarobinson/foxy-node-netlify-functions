@@ -18,10 +18,12 @@ const emailsToReject = ["rija@example.com"];
  // const customerData = JSON.stringify(requestEvent.body);
 // START HERE!!! just printing stuff. customerData was empty, so not getting body correctly?
 // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
-  return {
+return validCustomer(customerData); 
+
+/*return {
     body: JSON.stringify({ details: customerData, ok: false }),
     statusCode: 200,
-  };
+  };*/
 }
 
 /*  if (!validation.customer.validate(customerData)) {
@@ -87,16 +89,16 @@ function extractCustomerDetails(body) {
  * @param {Object} email to be validated
  * @returns {boolean} valid
  */
-/*function validCustomer(customer) {
+function validCustomer(email) {
   const errors = [];
-  if (!(customer.email || listOfBadEmails.Includes(customer.email))) {
-    errors.push("Sorry, the transaction cannot be completed.")
-  }
-  if (errors.length) {
-    return false;
+  if (!email || emailsToReject.Includes(email)) {
+    return {
+      body: JSON.stringify({ details: "Sorry, the transaction cannot be completed.", ok: false }),
+      statusCode: 200,
+    };
   }
   return true;
-}*/
+}
 
 /**
  * Validation checks
