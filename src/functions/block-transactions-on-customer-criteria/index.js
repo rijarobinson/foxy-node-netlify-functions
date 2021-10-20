@@ -19,12 +19,20 @@ const { config } = require("../../../config.js");
  // const customerData = JSON.stringify(requestEvent.body);
 // START HERE!!! just printing stuff. customerData was empty, so not getting body correctly?
 // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
-return validCustomer(customerData, emailsToReject); 
+//return validCustomer(customerData, emailsToReject); 
 
-/*return {
+if (emailsToReject.includes(customerData)) {
+return {
     body: JSON.stringify({ details: customerData, ok: false }),
     statusCode: 200,
-  };*/
+  }
+}
+return {
+  body: JSON.stringify({ details: customerData, ok: true }),
+  statusCode: 200,
+}
+
+
 }
 
 /*  if (!validation.customer.validate(customerData)) {
