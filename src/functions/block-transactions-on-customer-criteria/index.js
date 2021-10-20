@@ -3,7 +3,6 @@ const { config } = require("../../../config.js");
 
 
 
-const emailsToReject = ["rija@example.com"];
 
 /**
  * @param {Object} requestEvent the request event built by Netlify Functions
@@ -12,13 +11,15 @@ const emailsToReject = ["rija@example.com"];
 
 
  async function handler(requestEvent) {
+  const emailsToReject = ["rija@example.com"];
+
   // Validation
   // this will be empty if just run in the browser, duh
  const customerData = JSON.stringify(extractCustomerDetails(requestEvent.body));
  // const customerData = JSON.stringify(requestEvent.body);
 // START HERE!!! just printing stuff. customerData was empty, so not getting body correctly?
 // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
-return validCustomer(customerData); 
+return validCustomer(customerData, emailsToReject); 
 
 /*return {
     body: JSON.stringify({ details: customerData, ok: false }),
@@ -89,7 +90,7 @@ function extractCustomerDetails(body) {
  * @param {Object} email to be validated
  * @returns {boolean} valid
  */
-function validCustomer(email) {
+function validCustomer(email, emailsToReject) {
   if (!email || emailsToReject.Includes(email)) {
     return {
       body: JSON.stringify({ details: "Sorry, the transaction cannot be completed.", ok: false }),
