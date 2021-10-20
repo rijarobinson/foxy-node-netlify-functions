@@ -210,6 +210,7 @@ function validFoxyRequest(requestEvent) {
 
 module.exports = {
   getItems,
+  getCustomerData,
   messageInsufficientInventory,
   messagePriceMismatch,
   response,
