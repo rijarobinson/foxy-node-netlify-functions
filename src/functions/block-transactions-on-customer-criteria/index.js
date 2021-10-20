@@ -90,15 +90,16 @@ function extractCustomerDetails(body) {
  * @returns {boolean} valid
  */
 function validCustomer(email) {
-  const errors = [];
   if (!email || emailsToReject.Includes(email)) {
     return {
       body: JSON.stringify({ details: "Sorry, the transaction cannot be completed.", ok: false }),
       statusCode: 200,
     };
   }
-  return true;
-}
+  return {
+    body: JSON.stringify({ details: "Ok.", ok: true }),
+    statusCode: 200,
+  }}
 
 /**
  * Validation checks
