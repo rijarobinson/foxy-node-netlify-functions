@@ -13,16 +13,16 @@ const emailsToReject = ["rija@example.com"];
 
  async function handler(requestEvent) {
   // Validation
-  if (!validation.configuration.validate()) {
+  /*if (!validation.configuration.validate()) {
     return validation.configuration.response();
   }
   if (!validation.input.validate(requestEvent)) {
     return validation.input.response();
-  }
+  }*/
   const items = extractItems(requestEvent.body);
-  if (!validation.items.validate(items)) {
+ /* if (!validation.items.validate(items)) {
     return validation.items.response(items);
-  }
+  }*/
 
 
 //async function handler(requestEvent) {
