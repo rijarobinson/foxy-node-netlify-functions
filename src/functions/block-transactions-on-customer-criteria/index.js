@@ -27,12 +27,6 @@ return {
     statusCode: 200,
   }
 }
-return {
-  body: JSON.stringify({ details: customerData, ok: true }),
-  statusCode: 200,
-}
-
-
 }
 
 /*  if (!validation.customer.validate(customerData)) {
@@ -98,7 +92,7 @@ function extractCustomerDetails(body) {
  * @param {Object} email to be validated
  * @returns {boolean} valid
  */
-function validCustomer(email, emailsToReject) {
+/*function validCustomer(email, emailsToReject) {
   if (!email || emailsToReject.Includes(email)) {
     return {
       body: JSON.stringify({ details: "Sorry, the transaction cannot be completed.", ok: false }),
@@ -108,7 +102,7 @@ function validCustomer(email, emailsToReject) {
   return {
     body: JSON.stringify({ details: "Ok.", ok: true }),
     statusCode: 200,
-  }}
+  }}*/
 
 /**
  * Validation checks
