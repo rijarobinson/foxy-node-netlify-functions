@@ -9,7 +9,7 @@ const { config } = require("../../../config.js");
  * @param {Object} requestEvent the request event built by Netlify Functions
  * @returns {Promise<{statusCode: number, body: string}>} the response object
  */
-async function handler(requestEvent) {
+async function handler() {
   // Validation
   return {
     body: JSON.stringify({ details: "The message", ok: false, }),
@@ -111,6 +111,5 @@ async function handler(requestEvent) {
 }*/
 
 module.exports = {
-  handler,
-  extractCustomerDetails
+  handler
 }
