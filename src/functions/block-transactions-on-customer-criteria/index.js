@@ -1,18 +1,23 @@
 const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
 const { config } = require("../../../config.js");
 
-const emailsToReject = ["rija@example.com"];
+return {
+  body: JSON.stringify({ details: "The message", ok: false, }),
+  statusCode: 500,
+};
+
+//const emailsToReject = ["rija@example.com"];
 
 /**
  * @param {Object} requestEvent the request event built by Netlify Functions
  * @returns {Promise<{statusCode: number, body: string}>} the response object
  */
-async function handler(requestEvent) {
+/*async function handler(requestEvent) {
   // Validation
   const customerData = extractCustomerDetails();
   if (!validation.customer.validate(customerData)) {
     return validation.customer.response(customerData);
-  }
+  }*/
 /*  const values = [];
   const cache = createCache();
   // Fetch information needed to validate the cart
@@ -51,7 +56,7 @@ async function handler(requestEvent) {
       statusCode: 500,
     };
   }*/
-}
+//}
 
 /**
  * Extract Customer Details from payload received from FoxyCart
@@ -59,13 +64,13 @@ async function handler(requestEvent) {
  * @param {string} body of the data received from datastore or file
  * @returns {Array} an array of items
  */
-function extractCustomerDetails(body) {
+/*function extractCustomerDetails(body) {
   const objBody = JSON.parse(body);
   if (objBody && objBody._embedded && objBody._embedded['fx:customer']) {
     return objBody._embedded['fx:customer'];
   }
   return [];
-}
+}*/
 
 /**
  * Checks if email is on blocklist
@@ -73,7 +78,7 @@ function extractCustomerDetails(body) {
  * @param {Object} email to be validated
  * @returns {boolean} valid
  */
-function validCustomer(customer) {
+/*function validCustomer(customer) {
   const errors = [];
   if (!(customer.email || listOfBadEmails.Includes(customer.email))) {
     errors.push("Sorry, the transaction cannot be completed.")
@@ -82,12 +87,12 @@ function validCustomer(customer) {
     return false;
   }
   return true;
-}
+}*/
 
 /**
  * Validation checks
  */
-const validation = {
+/*const validation = {
   validate: function (requestEvent) {
     this.errorMessage = FoxyWebhook.validFoxyRequest(requestEvent);
     return !this.errorMessage;
@@ -107,4 +112,4 @@ const validation = {
 module.exports = {
   handler,
   extractCustomerDetails
-}
+}*/
