@@ -3,7 +3,7 @@ const { config } = require("../../../config.js");
 
 
 
-//const emailsToReject = ["rija@example.com"];
+const emailsToReject = ["rija@example.com"];
 
 /**
  * @param {Object} requestEvent the request event built by Netlify Functions
@@ -11,13 +11,15 @@ const { config } = require("../../../config.js");
  */
 async function handler() {
   // Validation
+
+
+  const customerData = extractCustomerDetails(payload);
+
   return {
-    body: JSON.stringify({ details: "The message", ok: false }),
+    body: JSON.stringify({ details: customerData, ok: false }),
     statusCode: 200,
   };
-}
-/*  const customerData = extractCustomerDetails();
-  if (!validation.customer.validate(customerData)) {
+}/*  if (!validation.customer.validate(customerData)) {
     return validation.customer.response(customerData);
   }*/
 /*  const values = [];
@@ -66,13 +68,13 @@ async function handler() {
  * @param {string} body of the data received from datastore or file
  * @returns {Array} an array of items
  */
-/*function extractCustomerDetails(body) {
+function extractCustomerDetails(body) {
   const objBody = JSON.parse(body);
   if (objBody && objBody._embedded && objBody._embedded['fx:customer']) {
     return objBody._embedded['fx:customer'];
   }
   return [];
-}*/
+}
 
 /**
  * Checks if email is on blocklist
