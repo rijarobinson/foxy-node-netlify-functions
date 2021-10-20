@@ -12,8 +12,8 @@ const { config } = require("../../../config.js");
 async function handler() {
   // Validation
   return {
-    body: JSON.stringify({ details: "The message", ok: false, }),
-    statusCode: 500,
+    body: JSON.stringify({ details: "The message", ok: false }),
+    statusCode: 200,
   };
 }
 /*  const customerData = extractCustomerDetails();
