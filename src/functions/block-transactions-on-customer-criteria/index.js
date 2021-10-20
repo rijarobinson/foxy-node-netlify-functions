@@ -15,6 +15,7 @@ async function handler() {
     body: JSON.stringify({ details: "The message", ok: false, }),
     statusCode: 500,
   };
+}
 /*  const customerData = extractCustomerDetails();
   if (!validation.customer.validate(customerData)) {
     return validation.customer.response(customerData);
@@ -57,7 +58,7 @@ async function handler() {
       statusCode: 500,
     };
   }*/
-}
+//}
 
 /**
  * Extract Customer Details from payload received from FoxyCart
