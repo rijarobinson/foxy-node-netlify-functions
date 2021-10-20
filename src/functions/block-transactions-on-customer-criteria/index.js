@@ -14,8 +14,8 @@ const emailsToReject = ["rija@example.com"];
  async function handler(requestEvent) {
   // Validation
   // this will be empty if just run in the browser, duh
- const customerData = extractCustomerDetails(requestEvent.body);
- // const customerData = JSON.stringify(requestEvent.body);
+ //const customerData = extractCustomerDetails(requestEvent.body);
+  const customerData = JSON.stringify(requestEvent.body);
 // START HERE!!! just printing stuff. customerData was empty, so not getting body correctly?
 // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
   return {
