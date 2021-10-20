@@ -22,11 +22,14 @@ const { config } = require("../../../config.js");
 //return validCustomer(customerData, emailsToReject); 
 
 if (emailsToReject.includes(customerData)) {
-return {
-    body: JSON.stringify({ details: customerData, ok: false }),
-    statusCode: 200,
-  }
+ customerData = "blah!";
 }
+
+return {
+  body: JSON.stringify({ details: customerData, ok: false }),
+  statusCode: 200,
+}
+
 }
 
 /*  if (!validation.customer.validate(customerData)) {
