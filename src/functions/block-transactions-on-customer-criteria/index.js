@@ -1,5 +1,5 @@
-const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
-const { config } = require("../../../config.js");
+//const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
+//const { config } = require("../../../config.js");
 
 return {
   body: JSON.stringify({ details: "The message", ok: false, }),
