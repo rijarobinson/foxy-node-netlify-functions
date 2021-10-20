@@ -9,7 +9,7 @@ const emailsToReject = ["rija@example.com"];
  * @param {Object} requestEvent the request event built by Netlify Functions
  * @returns {Promise<{statusCode: number, body: string}>} the response object
  */
-async function handler() {
+async function handler(requestEvent) {
   // Validation
 
 
