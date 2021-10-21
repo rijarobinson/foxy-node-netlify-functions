@@ -16,8 +16,11 @@ const emailsToReject = ["rija@example.com"];
   // Validation
   // this will be empty if just run in the browser, duh
  //const customerData = JSON.stringify(extractCustomerDetails(requestEvent.body));
-  const customerData = JSON.stringify(requestEvent.body._embedded['fx:customer']['email']);
-// START HERE!!! just printing stuff. customerData was empty, so not getting body correctly?
+  const objBody = JSON.parse(requestEvent.body);
+
+  const customerData = JSON.stringify(objBody._embedded['fx:customer']['email']);
+
+  // START HERE!!! just printing stuff. customerData was empty, so not getting body correctly?
 // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
 //return validCustomer(customerData, emailsToReject); 
 
