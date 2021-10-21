@@ -21,9 +21,9 @@ const { config } = require("../../../config.js");
 // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
 //return validCustomer(customerData, emailsToReject); 
 
-if (["rija@example.com"].includes("rija@example.com")) {
+/*if (["rija@example.com"].includes("rija@example.com")) {
  customerData = "blah!";
-}
+}*/
 
 return {
   body: JSON.stringify({ details: customerData, ok: false }),
