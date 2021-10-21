@@ -1,6 +1,7 @@
 const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
 const { config } = require("../../../config.js");
 
+const emailsToReject = ["rija@example.com"];
 
 
 
@@ -11,7 +12,6 @@ const { config } = require("../../../config.js");
 
 
  async function handler(requestEvent) {
-  const emailsToReject = ["rija@example.com"];
 
   // Validation
   // this will be empty if just run in the browser, duh
