@@ -21,7 +21,7 @@ const { config } = require("../../../config.js");
 // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
 //return validCustomer(customerData, emailsToReject); 
 
-if (emailsToReject.includes(customerData)) {
+if (["rija@example.com"].includes("rija@example.com")) {
  customerData = "blah!";
 }
 
@@ -96,7 +96,7 @@ function extractCustomerDetails(body) {
  * @returns {boolean} valid
  */
 /*function validCustomer(email, emailsToReject) {
-  if (!email || emailsToReject.Includes(email)) {
+  if (!email || emailsToReject.includes(email)) {
     return {
       body: JSON.stringify({ details: "Sorry, the transaction cannot be completed.", ok: false }),
       statusCode: 200,
