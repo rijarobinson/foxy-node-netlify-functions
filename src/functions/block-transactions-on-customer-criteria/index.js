@@ -17,7 +17,7 @@ const { config } = require("../../../config.js");
  //const customerData = JSON.stringify(extractCustomerDetails(requestEvent.body));
   const objBody = JSON.parse(requestEvent.body);
 
-  const customerData = JSON.stringify(objBody._embedded['fx:customer']['email']);
+  const customerData = objBody._embedded['fx:customer']['email'];
 
   const emailsToReject = ["rija@example.com"];
 
@@ -26,7 +26,7 @@ const { config } = require("../../../config.js");
 // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
 //return validCustomer(customerData, emailsToReject); 
 
-if (["rija@example.com"].includes(customerData)) {
+if (["rija@example.com"].includes("rija@example.com")) {
   return {
     body: JSON.stringify({ details: "problem", ok: false }),
     statusCode: 200,
