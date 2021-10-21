@@ -1,7 +1,6 @@
 const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
 const { config } = require("../../../config.js");
 
-const emailsToReject = ["rija@example.com"];
 
 
 
@@ -20,11 +19,14 @@ const emailsToReject = ["rija@example.com"];
 
   const customerData = JSON.stringify(objBody._embedded['fx:customer']['email']);
 
+  const emailsToReject = ["rija@example.com"];
+
+
   // START HERE!!! just printing stuff. customerData was empty, so not getting body correctly?
 // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
 //return validCustomer(customerData, emailsToReject); 
 
-if (["rija@example.com"].includes("rija@example.com")) {
+if (["rija@example.com"].includes(customerData)) {
   return {
     body: JSON.stringify({ details: "problem", ok: false }),
     statusCode: 200,
