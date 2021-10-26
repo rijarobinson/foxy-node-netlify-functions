@@ -1,29 +1,31 @@
 const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
-const { config } = require("../../../config.js");
-
-
+//const { config } = require("../../../config.js");
 
 
 /**
+ * Receives the request, processes it and sends the response.
+ * 
  * @param {Object} requestEvent the request event built by Netlify Functions
  * @returns {Promise<{statusCode: number, body: string}>} the response object
  */
-
 
  async function handler(requestEvent) {
 
   // Validation
   // this will be empty if just run in the browser, duh
- //const customerData = JSON.stringify(extractCustomerDetails(requestEvent.body));
-  const objBody = JSON.parse(requestEvent.body);
+ const customerData = JSON.stringify(extractCustomerDetails(requestEvent.body));
+  
+ const emailsToReject = ["rija@example.com"];
 
-  const customerData = objBody._embedded['fx:customer']['email'];
+  //const objBody = JSON.parse(requestEvent.body);
 
-  const emailsToReject = ["rija@example.com"];
+  //const customerData = objBody._embedded['fx:customer']['email'];
 
 
-  // START HERE!!! just printing stuff. customerData was empty, so not getting body correctly?
-// make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
+
+// add other strings to reject that maybe aren't emails
+// like just 2nd level domain, or maybe use regex. Not sure how includes would process that
+  // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
 //return validCustomer(customerData, emailsToReject); 
 
 if (emailsToReject.includes(customerData)) {
