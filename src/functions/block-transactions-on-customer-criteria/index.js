@@ -65,7 +65,7 @@ function extractCustomerEmail(body) {
  */
 
 function getEmailList() {
-  const emailsToReject = MatchList["emails"];
+  const emailsToReject = MatchList["email_addresses"];
   if (emailsToReject) {
     return emailsToReject;
   }
