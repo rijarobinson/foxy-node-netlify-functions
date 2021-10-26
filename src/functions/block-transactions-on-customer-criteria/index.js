@@ -32,7 +32,7 @@ if (getEmailList().includes(customerEmail)) {
 }
 // for testing, remove when done and uncomment return statement below
 return {
-  body: JSON.stringify({ details: customerEmail, ok: false }),
+  body: JSON.stringify({ details: JSON.stringify(getEmailList()), ok: false }),
   statusCode: 200,
 }
 
