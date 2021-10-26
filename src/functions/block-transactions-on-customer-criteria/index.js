@@ -1,4 +1,5 @@
 const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
+const MatchList = require("./matchlist.json");
 //const { config } = require("../../../config.js");
 
 
@@ -14,26 +15,31 @@ const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
   // Validation
   // this will be empty if just run in the browser, duh
  const customerEmail = extractCustomerEmail(requestEvent.body);
-  
- const emailsToReject = ["rija@example.com"];
+
+ //const emailsToReject = ["rija@example.com"];
 
 // add other strings to reject that maybe aren't emails
 // like just 2nd level domain, or maybe use regex. Not sure how includes would process that
   // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
 //return validCustomer(customerData, emailsToReject); 
 
-if (emailsToReject.includes(customerEmail)) {
+if (getEmailList().includes(customerEmail)) {
   return {
-    body: JSON.stringify({ details: "problem", ok: false }),
+    body: JSON.stringify({ details: "Sorry, the transaction cannot be completed.", ok: false }),
     statusCode: 200,
   }
 
 }
-
+// for testing, remove when done and uncomment return statement below
 return {
   body: JSON.stringify({ details: customerEmail, ok: false }),
   statusCode: 200,
 }
+
+// return {
+//   body: JSON.stringify({ details: "", ok: true }),
+//   statusCode: 200,
+// }
 
 }
 
@@ -41,12 +47,27 @@ return {
  * Extract Customer Details from payload received from FoxyCart
  *
  * @param {string} body of the data received from datastore or file
- * @returns {Array} an array of items
+ * @returns {string} email address of transaction
  */
 function extractCustomerEmail(body) {
   const objBody = JSON.parse(body);
   if (objBody && objBody._embedded && objBody._embedded['fx:customer']['email']) {
     return objBody._embedded['fx:customer']['email'];
+  }
+  return "";
+}
+
+/**
+ * Opens file and returns contents
+ *
+ * @param {Object} email to be validated
+ * @returns {array} array of email addresses
+ */
+
+function getEmailList() {
+  const emailsToReject = MatchList["emails"];
+  if (emailsToReject) {
+    return emailsToReject;
   }
   return [];
 }
