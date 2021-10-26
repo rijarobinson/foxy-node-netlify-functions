@@ -13,7 +13,7 @@ const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
 
   // Validation
   // this will be empty if just run in the browser, duh
- const customerData = JSON.stringify(extractCustomerDetails(requestEvent.body));
+ const customerData = extractCustomerDetails(requestEvent.body);
   
  const emailsToReject = ["rija@example.com"];
 
