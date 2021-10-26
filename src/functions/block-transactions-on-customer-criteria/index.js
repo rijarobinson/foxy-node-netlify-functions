@@ -31,7 +31,7 @@ if (emailsToReject.includes(customerEmail)) {
 }
 
 return {
-  body: JSON.stringify({ details: customerData, ok: false }),
+  body: JSON.stringify({ details: customerEmail, ok: false }),
   statusCode: 200,
 }
 
