@@ -14,25 +14,25 @@ const MatchList = require("./matchlist.json");
 
   // Validation
   // this will be empty if just run in the browser, duh
- const customerEmail = extractCustomerEmail(requestEvent.body);
 
- //const emailsToReject = ["rija@example.com"];
+
+ const customerEmail = extractCustomerEmail(requestEvent.body);
+ const customerIP = extractCustomerIP(requestEvent.body);
 
 // add other strings to reject that maybe aren't emails
 // like just 2nd level domain, or maybe use regex. Not sure how includes would process that
   // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
 //return validCustomer(customerData, emailsToReject); 
 
-if (getEmailList().includes(customerEmail)) {
+if (getEmailList().includes(customerEmail) || getIPAddressList().includes(customerIP)) {
   return {
     body: JSON.stringify({ details: "Sorry, the transaction cannot be completed.", ok: false }),
     statusCode: 200,
   }
-
 }
 // for testing, remove when done and uncomment return statement below
 return {
-  body: JSON.stringify({ details: JSON.stringify(getEmailList()), ok: false }),
+  body: JSON.stringify({ details: JSON.stringify(getIPAddressList()), ok: false }),
   statusCode: 200,
 }
 
@@ -44,9 +44,9 @@ return {
 }
 
 /**
- * Extract Customer Details from payload received from FoxyCart
+ * Extract Customer Email from payload received from FoxyCart
  *
- * @param {string} body of the data received from datastore or file
+ * @param {string} body of the data received from payload
  * @returns {string} email address of transaction
  */
 function extractCustomerEmail(body) {
@@ -58,7 +58,21 @@ function extractCustomerEmail(body) {
 }
 
 /**
- * Opens file and returns contents
+ * Extract Customer IP Address from payload received from FoxyCart
+ *
+ * @param {string} body of the data received from payload
+ * @returns {string} ip address of transaction
+ */
+ function extractCustomerIP(body) {
+  const objBody = JSON.parse(body);
+  if (objBody && objBody['customer_ip']) {
+    return objBody['customer_ip'];
+  }
+  return "";
+}
+
+/**
+ * Opens file and returns list of emails
  *
  * @param {Object} email to be validated
  * @returns {array} array of email addresses
@@ -73,22 +87,19 @@ function getEmailList() {
 }
 
 /**
- * Checks if email is on blocklist
+ * Opens file and returns IP Addresses to block
  *
- * @param {Object} email to be validated
- * @returns {boolean} valid
+ * @param {Object} IP Addresses to be validated
+ * @returns {array} array of IP Addresses
  */
-/*function validCustomer(email, emailsToReject) {
-  if (!email || emailsToReject.includes(email)) {
-    return {
-      body: JSON.stringify({ details: "Sorry, the transaction cannot be completed.", ok: false }),
-      statusCode: 200,
-    };
+
+ function getIPAddressList() {
+  const ipsToReject = MatchList["ip_addresses"];
+  if (ipsToReject) {
+    return ipsToReject;
   }
-  return {
-    body: JSON.stringify({ details: "Ok.", ok: true }),
-    statusCode: 200,
-  }}*/
+  return [];
+}
 
 module.exports = {
   handler
