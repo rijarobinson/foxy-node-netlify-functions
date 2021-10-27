@@ -1,7 +1,5 @@
 const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
 const MatchList = require("./matchlist.json");
-//const { config } = require("../../../config.js");
-
 
 /**
  * Receives the request, processes it and sends the response.
@@ -10,37 +8,20 @@ const MatchList = require("./matchlist.json");
  * @returns {Promise<{statusCode: number, body: string}>} the response object
  */
 
- async function handler(requestEvent) {
+async function handler(requestEvent) {
+  const customerEmail = extractCustomerEmail(requestEvent.body);
+  const customerIP = extractCustomerIP(requestEvent.body);
 
-  // Validation
-  // this will be empty if just run in the browser, duh
-
-
- const customerEmail = extractCustomerEmail(requestEvent.body);
- const customerIP = extractCustomerIP(requestEvent.body);
-
-// add other strings to reject that maybe aren't emails
-// like just 2nd level domain, or maybe use regex. Not sure how includes would process that
-  // make changes, commit, then push. Netlify will auto-deploy, then can refresh netlify url in browser to get response
-//return validCustomer(customerData, emailsToReject); 
-
-if (getEmailList().includes(customerEmail) || getIPAddressList().includes(customerIP)) {
+  if (getEmailList().includes(customerEmail) || getIPAddressList().includes(customerIP)) {
+    return {
+      body: JSON.stringify({ details: "Sorry, the transaction cannot be completed.", ok: false }),
+      statusCode: 200,
+    }
+  }
   return {
-    body: JSON.stringify({ details: "Sorry, the transaction cannot be completed.", ok: false }),
+    body: JSON.stringify({ details: "", ok: true }),
     statusCode: 200,
   }
-}
-// for testing, remove when done and uncomment return statement below
-return {
-  body: JSON.stringify({ details: JSON.stringify(getIPAddressList()), ok: false }),
-  statusCode: 200,
-}
-
-// return {
-//   body: JSON.stringify({ details: "", ok: true }),
-//   statusCode: 200,
-// }
-
 }
 
 /**
