@@ -25,7 +25,7 @@ async function handler(requestEvent) {
 //    body: JSON.stringify({ details: "", ok: true }),
 //    statusCode: 200,
 //  }
-//}
+}
 
 /**
  * Extract Customer Email from payload received from FoxyCart
