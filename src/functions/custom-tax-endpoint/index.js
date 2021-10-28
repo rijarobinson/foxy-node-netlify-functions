@@ -18,7 +18,10 @@ async function handler(requestEvent) {
  //const taxConfiguration = '{hi}';
 
 
- return taxConfiguration;
+ return {
+   body: JSON.stringify(taxConfiguration),
+   statusCode: 200
+  };
       
 //  }
  // return {
