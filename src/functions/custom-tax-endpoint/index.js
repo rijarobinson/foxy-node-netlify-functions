@@ -18,7 +18,7 @@ async function handler(requestEvent) {
  const taxConfiguration = '{hi}';
 
 
- return taxConfiguration;
+ return 'hi';
       
 //  }
  // return {
