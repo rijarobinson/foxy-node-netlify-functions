@@ -13,30 +13,8 @@ async function handler(requestEvent) {
  // const customerIP = extractCustomerIP(requestEvent.body);
 
  // if (getEmailList().includes(customerEmail) || getIPAddressList().includes(customerIP)) {
- const taxConfiguration =  JSON.stringify({
-  "ok":true,
-  "details":"",
-  "name":"custom tax",
-  "expand_taxes":[
-     {
-        "name":"super tax",
-        "rate":0.045,
-        "amount":0.23
-     },
-     {
-        "name":"mega tax",
-        "rate":0.053,
-        "amount":0.27
-     },
-     {
-        "name":"litle tax",
-        "rate":0.021,
-        "amount":0.11
-     }
-  ],
-  "total_amount":0.6,
-  "total_rate":0.119
-});
+ const taxConfiguration =  JSON.stringify({"ok":true,"details":"","name":"custom tax","expand_taxes":[{"name":"super tax","rate":0.045,"amount":0.23}],"total_amount":0.6,"total_rate":0.119});
+
  return taxConfiguration;
       
 //  }
