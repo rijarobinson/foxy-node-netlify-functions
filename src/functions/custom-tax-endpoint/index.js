@@ -17,7 +17,7 @@ async function handler(requestEvent) {
 const country = transactionData['_embedded']['fx:shipments']['country'];
 const category = transactionData['_embedded']['fx:items'][0]['_embedded']['fx:item_category']['code'];
 //doesn't tax shipping amount
-const order_total = transactionData['_embedded']['fx:shipment']['total_item_price'];
+const order_total = transactionData['_embedded']['fx:shipments']['total_item_price'];
 let tax_rate = .12;
 
 if (category.toLowerCase() == "dealer") {
