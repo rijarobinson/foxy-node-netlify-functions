@@ -9,11 +9,39 @@ const MatchList = require("./matchlist.json");
  */
 
 async function handler(requestEvent) {
- // const customerEmail = extractCustomerEmail(requestEvent.body);
- // const customerIP = extractCustomerIP(requestEvent.body);
+ const transactionData = requestEvent.body;
+
+ const country = transactionData._embedded['fx:shipment']['country'];
+ const category = transactionData._embedded['fx:items'][0]['_embedded']['fx:item_category']['code'];
+// doesn't tax shipping amount
+ const order_total = transactionData._embedded['fx:shipment']['total_item_price'];
+ let tax_rate = .12;
+
+if (category.toLowerCase() == "dealer") {
+  tax_rate = .05;
+}
+
+if (country == "US") {
+  tax_rate = 0;
+}
+
+let tax_amount = tax_rate * order_total;
 
  // if (getEmailList().includes(customerEmail) || getIPAddressList().includes(customerIP)) {
- const taxConfiguration = {"ok":true,"details":"","name":"custom tax","expand_taxes":[{"name":"super tax","rate":0.045,"amount":0.23}],"total_amount":0.6,"total_rate":0.119};
+ let taxConfiguration = {
+   "ok":true,
+   "details":"",
+   "name":"custom tax",
+   "expand_taxes":[
+     {
+       "name":"Tax",
+       "rate":tax_rate,
+       "amount":tax_amount
+      }
+    ],
+    "total_amount":tax_amount,
+    "total_rate":tax_rate
+  };
 
  //const taxConfiguration = '{hi}';
 
