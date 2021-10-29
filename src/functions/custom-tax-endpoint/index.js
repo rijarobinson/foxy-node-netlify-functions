@@ -28,7 +28,7 @@ if (country == "US") {
  tax_rate = 0;
 }
 
-let tax_amount = tax_rate * order_total;
+let tax_amount = .12 * 20;
 
  let taxConfiguration = {
    "ok":true,
