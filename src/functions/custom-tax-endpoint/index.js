@@ -9,7 +9,7 @@ const MatchList = require("./matchlist.json");
  */
 
 async function handler(requestEvent) {
- const transactionData = requestEvent.body;
+ const transactionData = JSON.parse(requestEvent.body);
 
  const country = transactionData._embedded['fx:shipment']['country'];
  const category = transactionData._embedded['fx:items'][0]['_embedded']['fx:item_category']['code'];
