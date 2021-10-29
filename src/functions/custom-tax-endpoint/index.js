@@ -1,3 +1,4 @@
+const { json } = require("body-parser");
 const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
 const MatchList = require("./matchlist.json");
 
@@ -7,49 +8,51 @@ const MatchList = require("./matchlist.json");
  * @param {Object} requestEvent the request event built by Netlify Functions
  * @returns {Promise<{statusCode: number, body: string}>} the response object
  */
-
+// check out node example for custom shipping endpoint
 async function handler(requestEvent) {
  const transactionData = JSON.parse(requestEvent.body);
 
- const country = transactionData._embedded['fx:shipment']['country'];
- const category = transactionData._embedded['fx:items'][0]['_embedded']['fx:item_category']['code'];
+// getting issues with the data, maybe print transactionData to browser 
+
+// const country = transactionData['_embedded']['fx:shipment']['country'];
+// const category = transactionData['__embedded']['fx:items'][0]['_embedded']['fx:item_category']['code'];
 // doesn't tax shipping amount
- const order_total = transactionData._embedded['fx:shipment']['total_item_price'];
- let tax_rate = .12;
+// const order_total = transactionData['_embedded']['fx:shipment']['total_item_price'];
+// let tax_rate = .12;
 
-if (category.toLowerCase() == "dealer") {
-  tax_rate = .05;
-}
+//if (category.toLowerCase() == "dealer") {
+//  tax_rate = .05;
+//}
 
-if (country == "US") {
-  tax_rate = 0;
-}
+//if (country == "US") {
+//  tax_rate = 0;
+//}
 
-let tax_amount = tax_rate * order_total;
+//let tax_amount = tax_rate * order_total;
 
  // if (getEmailList().includes(customerEmail) || getIPAddressList().includes(customerIP)) {
- let taxConfiguration = {
-   "ok":true,
-   "details":"",
-   "name":"custom tax",
-   "expand_taxes":[
-     {
-       "name":"Tax",
-       "rate":tax_rate,
-       "amount":tax_amount
-      }
-    ],
-    "total_amount":tax_amount,
-    "total_rate":tax_rate
-  };
-
- //const taxConfiguration = '{hi}';
+//  let taxConfiguration = {
+//    "ok":true,
+//    "details":"",
+//    "name":"custom tax",
+//    "expand_taxes":[
+//      {
+//        "name":"Tax",
+//        "rate":tax_rate,
+//        "amount":tax_amount
+//       }
+//     ],
+//     "total_amount":tax_amount,
+//     "total_rate":tax_rate
+//   };
 
 
- return {
-   body: JSON.stringify(taxConfiguration),
-   statusCode: 200
-  };
+//  return {
+//    body: JSON.stringify(taxConfiguration),
+//    statusCode: 200
+//   };
+
+return JSON.stringify(transactionData);
       
 //  }
  // return {
