@@ -52,7 +52,10 @@ async function handler(requestEvent) {
 //    statusCode: 200
 //   };
 
-return JSON.stringify(transactionData);
+return {
+  body: JSON.stringify(transactionData),
+  statusCode: 200
+}
       
 //  }
  // return {
