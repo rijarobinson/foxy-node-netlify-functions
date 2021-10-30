@@ -18,14 +18,14 @@ const country = transactionData['_embedded']['fx:shipments']['country'];
 const category = transactionData['_embedded']['fx:items'][0]['_embedded']['fx:item_category']['code'];
 //doesn't tax shipping amount
 const order_total = transactionData['total_item_price'];
-let tax_rate = .12;
+let tax_rate = 0;
 
 if (category.toLowerCase() == "dealer") {
  tax_rate = .05;
 }
 
-if (country == "US") {
- tax_rate = 0;
+if (country != "US") {
+ tax_rate = .12;
 }
 // need to fix this. total item price was null in the response
 let tax_amount = tax_rate * order_total;
