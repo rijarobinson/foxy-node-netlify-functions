@@ -17,7 +17,7 @@ async function handler(requestEvent) {
 const country = transactionData['_embedded']['fx:shipments']['country'];
 const category = transactionData['_embedded']['fx:items'][0]['_embedded']['fx:item_category']['code'];
 //doesn't tax shipping amount
-const order_total = transactionData['_embedded']['fx:shipments']['total_item_price'];
+const order_total = transactionData['total_item_price'];
 let tax_rate = .12;
 
 if (category.toLowerCase() == "dealer") {
@@ -27,8 +27,8 @@ if (category.toLowerCase() == "dealer") {
 if (country == "US") {
  tax_rate = 0;
 }
-
-let tax_amount = .12 * 20;
+// need to fix this. total item price was null in the response
+let tax_amount = tax_rate * order_total;
 
  let taxConfiguration = {
    "ok":true,
