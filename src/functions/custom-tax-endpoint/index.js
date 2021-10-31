@@ -18,6 +18,7 @@ const country = transactionData['_embedded']['fx:shipments']['country'];
 //const category = transactionData['_embedded']['fx:items'][0]['_embedded']['fx:item_category']['code'];
 // US — all customers 0% tax
 // outside US — 12% tax non-dealers, 5% dealers
+console.log('country: ' +country);
 
 // need total to tax shipping amount
 const order_total = transactionData['total_item_price'];
@@ -37,7 +38,6 @@ let tax_rate = 0;
 let tax_amount = tax_rate * order_total;
 
  let taxConfiguration = {
-   "country":country,
    "ok":true,
    "details":"",
    "name":"custom tax",
