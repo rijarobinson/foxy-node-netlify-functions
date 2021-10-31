@@ -10,11 +10,11 @@ const MatchList = require("./matchlist.json");
  */
 // check out node example for custom shipping endpoint
 async function handler(requestEvent) {
- const transactionData = JSON.parse(requestEvent.body);
+ const country = extractCustomerCountry(requestEvent.body);
 
 // getting issues with the data, maybe print transactionData to browser 
 
-const country = transactionData['_embedded']['fx:shipments']['country'];
+//const country = transactionData['_embedded']['fx:shipments']['country'];
 //const category = transactionData['_embedded']['fx:items'][0]['_embedded']['fx:item_category']['code'];
 // US — all customers 0% tax
 // outside US — 12% tax non-dealers, 5% dealers
@@ -74,10 +74,10 @@ let tax_amount = tax_rate * order_total;
  * @param {string} body of the data received from payload
  * @returns {string} email address of transaction
  */
-function extractCustomerEmail(body) {
+function extractCustomerCountry(body) {
   const objBody = JSON.parse(body);
-  if (objBody && objBody._embedded && objBody._embedded['fx:customer']['email']) {
-    return objBody._embedded['fx:customer']['email'];
+  if (objBody && objBody._embedded && objBody._embedded['fx:shipments']['country']) {
+    return objBody._embedded['fx:shipments']['country'];
   }
   return "";
 }
