@@ -25,6 +25,7 @@ if (country != "US") {
     tax_rate = .05;
   } else {
     tax_rate = .12;
+  }
 }
 
 // need to fix this. rate is not updating correctly
