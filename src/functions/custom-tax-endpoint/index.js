@@ -23,15 +23,15 @@ const country = transactionData['_embedded']['fx:shipments']['country'];
 const order_total = transactionData['total_item_price'];
 let tax_rate = 0;
 
-if (country != "US") {
+//if (country != "US") {
 //  if (category.toLowerCase() == "dealer") {
-    tax_rate = .05;
+//    tax_rate = .05;
 //  } else {
 //    tax_rate = .12;
 //  }
-} else {
-  tax_rate = 0;
-}
+//} else {
+//  tax_rate = 0;
+//}
 
 // need to fix this. rate is not updating correctly
 let tax_amount = tax_rate * order_total;
