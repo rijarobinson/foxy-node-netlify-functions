@@ -85,7 +85,7 @@ function extractCustomerCountry(body) {
   if (objBody && objBody._embedded && objBody._embedded['fx:shipments']['country']) {
     return objBody._embedded['fx:shipments']['country'];
   }
-  return JSON.stringify(objBody._embedded['fx:shipments']);
+  return JSON.stringify(objBody._embedded['fx:shipments']['country\\\/']);
 }
 
 /**
