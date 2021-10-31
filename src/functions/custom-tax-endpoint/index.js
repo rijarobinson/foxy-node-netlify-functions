@@ -15,17 +15,20 @@ async function handler(requestEvent) {
 // getting issues with the data, maybe print transactionData to browser 
 
 const country = transactionData['_embedded']['fx:shipments']['country'];
-const category = transactionData['_embedded']['fx:items'][0]['_embedded']['fx:item_category']['code'];
-//doesn't tax shipping amount
+//const category = transactionData['_embedded']['fx:items'][0]['_embedded']['fx:item_category']['code'];
+// US — all customers 0% tax
+// outside US — 12% tax non-dealers, 5% dealers
+
+// need total to tax shipping amount
 const order_total = transactionData['total_item_price'];
 let tax_rate = 0;
 
 if (country != "US") {
-  if (category.toLowerCase() == "dealer") {
+//  if (category.toLowerCase() == "dealer") {
     tax_rate = .05;
-  } else {
-    tax_rate = .12;
-  }
+//  } else {
+//    tax_rate = .12;
+//  }
 }
 
 // need to fix this. rate is not updating correctly
