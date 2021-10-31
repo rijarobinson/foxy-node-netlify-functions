@@ -80,11 +80,12 @@ let tax_amount = tax_rate * 20;
  * @returns {string} email address of transaction
  */
 function extractCustomerCountry(body) {
+  // this isn't coming in properly
   const objBody = JSON.parse(body);
   if (objBody && objBody._embedded && objBody._embedded['fx:shipments']['country']) {
     return objBody._embedded['fx:shipments']['country'];
   }
-  return JSON.stringify(objBody._embedded['fx:shipments']['country']);
+  return JSON.stringify(objBody._embedded['fx:shipments']);
 }
 
 /**
