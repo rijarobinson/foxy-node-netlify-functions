@@ -14,14 +14,18 @@ async function handler(requestEvent) {
 
 // getting issues with the data, maybe print transactionData to browser 
 
-//const country = transactionData['_embedded']['fx:shipments']['country'];
+const country = transactionData['_embedded']['fx:shipments']['country'];
 //const category = transactionData['_embedded']['fx:items'][0]['_embedded']['fx:item_category']['code'];
 // US — all customers 0% tax
 // outside US — 12% tax non-dealers, 5% dealers
 
 // need total to tax shipping amount
 const order_total = transactionData['total_item_price'];
-//let tax_rate = 0;
+let tax_rate = 0;
+
+if (country == "US") {
+  tax_rate = .4;
+}
 
 //if (country != "US") {
 //  if (category.toLowerCase() == "dealer") {
@@ -34,7 +38,7 @@ const order_total = transactionData['total_item_price'];
 //}
 
 // need to fix this. rate is not updating correctly
-let tax_amount = .3 * order_total;
+let tax_amount = tax_rate * order_total;
 
  let taxConfiguration = {
    "ok":true,
@@ -43,12 +47,12 @@ let tax_amount = .3 * order_total;
    "expand_taxes":[
      {
        "name":"Tax",
-       "rate":.3,
+       "rate": tax_rate,
        "amount":tax_amount
       }
     ],
     "total_amount":tax_amount,
-    "total_rate":.3
+    "total_rate": tax_rate
   };
 
 
