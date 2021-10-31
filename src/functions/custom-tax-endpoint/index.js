@@ -20,7 +20,7 @@ async function handler(requestEvent) {
 // outside US — 12% tax non-dealers, 5% dealers
 
 // need total to tax shipping amount
-const order_total = transactionData['total_item_price'];
+//const order_total = transactionData['total_item_price'];
 let tax_rate = 0;
 
 if (country == "US") {
@@ -38,7 +38,7 @@ if (country == "US") {
 //}
 
 // need to fix this. rate is not updating correctly
-let tax_amount = tax_rate * order_total;
+let tax_amount = tax_rate * 20;
 
  let taxConfiguration = {
    "ok":true,
