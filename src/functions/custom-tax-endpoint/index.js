@@ -25,7 +25,7 @@ if (category.toLowerCase() == "dealer") {
 }
 
 if (country != "US") {
- tax_rate = .12;
+ tax_rate = .05;
 }
 // need to fix this. rate is not updating correctly
 let tax_amount = tax_rate * order_total;
