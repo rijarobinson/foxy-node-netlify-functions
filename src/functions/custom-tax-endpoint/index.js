@@ -49,7 +49,12 @@ let tax_amount = tax_rate * 20;
        "name":"Tax",
        "rate": tax_rate,
        "amount":tax_amount
-      }
+      },
+      {
+        "name":country,
+        "rate": tax_rate,
+        "amount":tax_amount
+       }
     ],
     "total_amount":tax_amount,
     "total_rate": tax_rate
