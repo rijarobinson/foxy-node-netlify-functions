@@ -27,10 +27,11 @@ if (category.toLowerCase() == "dealer") {
 if (country != "US") {
  tax_rate = .12;
 }
-// need to fix this. total item price was null in the response
+// need to fix this. rate is not updating correctly
 let tax_amount = tax_rate * order_total;
 
  let taxConfiguration = {
+   "country":country,
    "ok":true,
    "details":"",
    "name":"custom tax",
