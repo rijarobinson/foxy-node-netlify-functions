@@ -20,7 +20,7 @@ async function handler(requestEvent) {
 // outside US — 12% tax non-dealers, 5% dealers
 
 // need total to tax shipping amount
-const order_total = requestEvent.body._embedded['total_item_price'];
+const order_total = requestEvent.body['total_item_price'];
 let tax_rate = 0;
 
 if (country == "US") {
