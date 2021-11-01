@@ -23,6 +23,7 @@ const jsonObject = JSON.parse(requestEvent.body);
 
 // need total to tax shipping amount
 const order_total = jsonObject['total_item_price'];
+console.log('order_total: ' +order_total);
 let tax_rate = 0;
 
 if (country == "US") {
