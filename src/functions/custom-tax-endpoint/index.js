@@ -17,7 +17,7 @@ async function handler(requestEvent) {
 const taxPayload = JSON.parse(requestEvent.body);
 const country = taxPayload._embedded['fx:shipments'][0]['country'];
 const category = taxPayload._embedded['fx:items'][0]['_embedded']['fx:item_category']['code'];
-const total_to_tax = taxPayload.total_item_price + taxPayload.total_shipping + taxPayload.total_discount;
+const totalToTax = taxPayload.total_item_price + taxPayload.total_shipping + taxPayload.total_discount;
 
 let tax_rate = 0;
 
@@ -29,7 +29,7 @@ if (country != "US") {
   }
 }
 
-let tax_amount = tax_rate * total_to_tax;
+let tax_amount = tax_rate * totalToTax;
 let taxConfiguration = {
    "ok":true,
    "details":"",
