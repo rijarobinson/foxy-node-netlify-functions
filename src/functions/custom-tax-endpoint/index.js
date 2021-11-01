@@ -22,7 +22,7 @@ async function handler(requestEvent) {
 const taxPayload = JSON.parse(requestEvent.body);
 const country = taxPayload._embedded['fx:shipments'][0]['country'];
 
-const total_to_tax = taxPayload.total_item_price + taxPayload.total_shipping + taxPayload + total_discount;
+const total_to_tax = taxPayload.total_item_price + taxPayload.total_shipping + taxPayload.total_discount;
 console.log('order_total: ' +order_total);
 console.log('country_2: ' +JSON.stringify(country));
 let tax_rate = 0;
