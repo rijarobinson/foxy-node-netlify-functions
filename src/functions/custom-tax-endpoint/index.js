@@ -24,7 +24,7 @@ const country = jsonObject._embedded['fx:shipments'];
 // need total to tax shipping amount
 const order_total = jsonObject['total_item_price'];
 console.log('order_total: ' +order_total);
-console.log('country: ' +country);
+console.log('country_2: ' +JSON.stringify(country));
 let tax_rate = 0;
 
 if (country == "US") {
