@@ -10,7 +10,7 @@ const MatchList = require("./matchlist.json");
  */
 // check out node example for custom shipping endpoint
 async function handler(requestEvent) {
- const country = extractCustomerCountry(requestEvent.body);
+ const country = requestEvent.body._embedded['fx:shipments']['country'];
 
 // getting issues with the data, maybe print transactionData to browser 
 
