@@ -19,30 +19,24 @@ async function handler(requestEvent) {
 // US — all customers 0% tax
 // outside US — 12% tax non-dealers, 5% dealers
 
-const jsonObject = JSON.parse(requestEvent.body);
-const country = jsonObject._embedded['fx:shipments'][0]['country'];
-// need total to tax shipping amount
-const order_total = jsonObject['total_item_price'];
+const taxPayload = JSON.parse(requestEvent.body);
+const country = taxPayload._embedded['fx:shipments'][0]['country'];
+
+const total_to_tax = taxPayload.total_item_price + taxPayload.total_shipping + taxPayload + total_discount;
 console.log('order_total: ' +order_total);
 console.log('country_2: ' +JSON.stringify(country));
 let tax_rate = 0;
 
-if (country == "US") {
-  tax_rate = .4;
+if (country != "US") {
+ if (category.toLowerCase() == "dealer") {
+   tax_rate = .05;
+ } else {
+   tax_rate = .12;
+ }
 }
 
-//if (country != "US") {
-//  if (category.toLowerCase() == "dealer") {
-//    tax_rate = .05;
-//  } else {
-//    tax_rate = .12;
-//  }
-//} else {
-//  tax_rate = 0;
-//}
-
 // need to fix this. rate is not updating correctly
-let tax_amount = tax_rate * 20;
+let tax_amount = tax_rate * total_to_tax;
 
  let taxConfiguration = {
    "ok":true,
@@ -53,12 +47,7 @@ let tax_amount = tax_rate * 20;
        "name":"Tax",
        "rate": tax_rate,
        "amount":tax_amount
-      },
-      {
-        "name":order_total,
-        "rate": tax_rate,
-        "amount":tax_amount
-       }
+      }
     ],
     "total_amount":tax_amount,
     "total_rate": tax_rate
