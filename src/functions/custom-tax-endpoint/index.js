@@ -10,7 +10,7 @@ const MatchList = require("./matchlist.json");
  */
 // check out node example for custom shipping endpoint
 async function handler(requestEvent) {
- const country = extractCustomerCountry(requestEvent.body);
+// const country = extractCustomerCountry(requestEvent.body);
 
 // getting issues with the data, maybe print transactionData to browser 
 
@@ -20,10 +20,11 @@ async function handler(requestEvent) {
 // outside US — 12% tax non-dealers, 5% dealers
 
 const jsonObject = JSON.parse(requestEvent.body);
-
+const country = jsonObject._embedded['fx:shipments']['country'];
 // need total to tax shipping amount
 const order_total = jsonObject['total_item_price'];
 console.log('order_total: ' +order_total);
+console.log('country: ' +country);
 let tax_rate = 0;
 
 if (country == "US") {
