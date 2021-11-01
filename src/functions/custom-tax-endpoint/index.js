@@ -19,8 +19,10 @@ async function handler(requestEvent) {
 // US — all customers 0% tax
 // outside US — 12% tax non-dealers, 5% dealers
 
+const jsonObject = JSON.parse(requestEvent.body);
+
 // need total to tax shipping amount
-const order_total = requestEvent.body['total_item_price'];
+const order_total = jsonObject['total_item_price'];
 let tax_rate = 0;
 
 if (country == "US") {
