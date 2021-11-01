@@ -35,6 +35,7 @@ let taxConfiguration = {
    "details":"",
    "name":"custom tax",
    "expand_taxes":[
+     // you can add up to 3 tax rates here. Be sure to add them together to get the total rate
      {
        "name": "Tax",
        "rate": tax_rate,
