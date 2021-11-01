@@ -10,7 +10,7 @@ const MatchList = require("./matchlist.json");
  */
 // check out node example for custom shipping endpoint
 async function handler(requestEvent) {
- const country = requestEvent.body._embedded['fx:shipments']['country'];
+ const country = extractCustomerCountry(requestEvent.body);
 
 // getting issues with the data, maybe print transactionData to browser 
 
@@ -85,7 +85,7 @@ function extractCustomerCountry(body) {
   if (objBody && objBody._embedded && objBody._embedded['fx:shipments'].country) {
     return objBody._embedded['fx:shipments'].country;
   }
-  return (objBody._embedded['fx:shipments']['country']);
+  return (objBody);
 }
 
 /**
