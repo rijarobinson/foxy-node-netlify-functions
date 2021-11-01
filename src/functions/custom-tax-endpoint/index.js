@@ -10,6 +10,7 @@ const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
 async function handler(requestEvent) {
 
 // Example: Modify logic to suit your use case
+// Assumes that items in the cart will not be mixed with dealer category and other categories
 // US — all customers 0% tax
 // outside US — 12% tax non-dealers, 5% dealers
 
