@@ -18,7 +18,7 @@ Modify the code in the example to your specific logic for your tax rates. The pa
 
 The logical rules for this example are the following:
 * The tax rate for all US orders is 0% (no tax)
-* The tax rate outside the US is 5% for all customers adding items to the cart with a category of *dealer* and 12% for all other categories outside the US.
+* The tax rate outside the US is 5% for all customers adding items to the cart with a category of **dealer** and 12% for all other categories outside the US.
 * The tax rate is applied to the total money amount of the items in the cart, plus shipping, minus any discounts.
 
 ### Create a new Netlify Site
@@ -31,8 +31,8 @@ After the deploy is complete, click the "functions" tab, look for the `custom-ta
 
 Configure your custom tax integration using your endpoint. 
 * Go to the [integrations settings](https://admin.foxycart.com/admin.php?ThisAction=AddIntegration) in the Foxy admin.
-* Select the CUSTOM TAX ENDPOINT option
-* In *url*, paste the URL that you copied previously
+* Select the **CUSTOM TAX ENDPOINT** option
+* In **url**, paste the URL that you copied previously
 * Save the setting
 
 # Upgrade your webhook
