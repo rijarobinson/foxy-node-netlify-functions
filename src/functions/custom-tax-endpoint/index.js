@@ -82,6 +82,7 @@ let tax_amount = tax_rate * 20;
 function extractCustomerCountry(body) {
   // this isn't coming in properly
   const objBody = JSON.parse(body);
+  console.log('body: ' +objBody);
   if (objBody && objBody._embedded && objBody._embedded['fx:shipments']['country']) {
     return objBody._embedded['fx:shipments']['country'];
   }
