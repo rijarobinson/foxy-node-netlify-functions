@@ -15,12 +15,12 @@ async function handler(requestEvent) {
 // getting issues with the data, maybe print transactionData to browser 
 
 //const country = transactionData['_embedded']['fx:shipments']['country'];
-//const category = transactionData['_embedded']['fx:items'][0]['_embedded']['fx:item_category']['code'];
 // US — all customers 0% tax
 // outside US — 12% tax non-dealers, 5% dealers
 
 const taxPayload = JSON.parse(requestEvent.body);
 const country = taxPayload._embedded['fx:shipments'][0]['country'];
+const category = taxPayload._embedded['fx:items'][0]['_embedded']['fx:item_category']['code'];
 
 const total_to_tax = taxPayload.total_item_price + taxPayload.total_shipping + taxPayload.total_discount;
 console.log('total_to_tax: ' +total_to_tax);
