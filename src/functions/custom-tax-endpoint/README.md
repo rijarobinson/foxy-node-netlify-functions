@@ -1,6 +1,6 @@
-# Pre-payment webhook for Blocking Transactions Based on Customer Data
+# Custom Tax Endpoint
 
-This provides you with a function that executes just before payment to check customer data on the order against a blocklist and reject or accept the order based on that data.
+This provides you with a function that executes when the address is entered on the checkout, custom calculates, and sends tax rate and amount to the Foxy cart.
 
 ## Usage
 
@@ -10,13 +10,16 @@ These are instructions for deploying the webhook to Netlify.
 
 Click the fork button in the top right corner.
 
-Forking the repository will create your own copy of this Webhook, allowing you to both customize it if you wish and to merge upgrades as they are published.
+Forking the repository will create your own copy of this endpoint, allowing you to both customize it if you wish and to merge upgrades as they are published.
 
 ### Customize
 
-Modify the matchlist.json file to include the email addresses/ip addresses that you want to block. If you don't want to block based on one of those, you can leave the array empty.
+Modify the code in the example to your specific logic for your tax rates. The payload that is received by the endpoint is shown in our documentation here: https://wiki.foxycart.com/v/2.0/webhooks
 
-You can also modify the error message that's displayed to customers when the pre-payment webhook validation fails. The default message is "Sorry, the transaction cannot be completed." Do not remove the quotes enclosing the message.
+The logical rules for this example are the following:
+* The tax rate for all US orders is 0% (no tax)
+* The tax rate outside the US is 5% for all customers adding items to the cart with a category of *dealer* and 12% for all other categories outside the US.
+* The tax rate is applied to the total money amount of the items in the cart, plus shipping, minus any discounts.
 
 ### Create a new Netlify Site
 
@@ -24,9 +27,13 @@ Go to your Netlify account and click the "New site from Git" button.
 
 - Choose your repository.
 
-After the deploy is complete, click the "functions" tab, look for the `block-transactions-on-customer-criteria` function and copy the **Endpoint URL**.
+After the deploy is complete, click the "functions" tab, look for the `custom-tax-endpoint` function and copy the **Endpoint URL**.
 
-Configure your prepayment webhook using your endpoint. Check the directions under Enabling the pre-payment hook here: https://wiki.foxycart.com/v/2.0/pre_payment_webhook#enabling_the_pre-payment_hook
+Configure your custom tax integration using your endpoint. 
+* Go to the [integrations settings](https://admin.foxycart.com/admin.php?ThisAction=AddIntegration) in the Foxy admin.
+* Select the CUSTOM TAX ENDPOINT option
+* In *url*, paste the URL that you copied previously
+* Save the setting
 
 # Upgrade your webhook
 

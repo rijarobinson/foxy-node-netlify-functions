@@ -9,6 +9,7 @@ const FoxyWebhook = require("../../foxy/FoxyWebhook.js");
  */
 async function handler(requestEvent) {
 
+// Example: Modify logic to suit your use case
 // US — all customers 0% tax
 // outside US — 12% tax non-dealers, 5% dealers
 

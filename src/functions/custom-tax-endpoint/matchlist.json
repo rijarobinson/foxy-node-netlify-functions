@@ -1,9 +1,0 @@
-{  "_comment": "Leave any arrays empty ([]) that you don't want to track.",
-    "email_addresses": [
-        "rija@example.com",
-        "marija@example.com"
-    ],
-    "ip_addresses": [
-        "162.204.225.188"
-    ]
-}
