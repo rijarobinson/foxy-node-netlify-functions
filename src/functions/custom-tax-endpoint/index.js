@@ -18,6 +18,9 @@ const taxPayload = JSON.parse(requestEvent.body);
 const country = taxPayload._embedded['fx:shipments'][0]['country'];
 const category = taxPayload._embedded['fx:items'][0]['_embedded']['fx:item_category']['code'];
 const totalToTax = taxPayload.total_item_price + taxPayload.total_shipping + taxPayload.total_discount;
+const language = taxPayload.language;
+
+console.log('language: ' +language);
 
 let tax_rate = 0;
 
